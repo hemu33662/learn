@@ -1,0 +1,13 @@
+# Use an official OpenJDK runtime as a base image
+FROM openjdk:17-jdk-slim
+
+# Set the working directory inside the container
+WORKDIR /app
+
+COPY target/learnip-0.0.1-SNAPSHOT.jar.original app.jar
+
+# Expose port 8080 for the app
+EXPOSE 8080
+
+# Define the command to run your Spring Boot application
+ENTRYPOINT ["java", "-jar", "app.jar"]

@@ -1,0 +1,48 @@
+package com.learnip.logger.controller;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+import com.learnip.logger.entity.ClickLog;
+import com.learnip.logger.repository.ClickLogRepository;
+import com.learnip.logger.repository.UrlMappingRepository;
+
+import jakarta.servlet.http.HttpServletRequest;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Controller
+@RequestMapping("/url")
+public class UrlController {
+
+    @Autowired
+    private UrlMappingRepository urlMappingRepository;
+
+    @Autowired
+    private ClickLogRepository clickLogRepository;
+
+    @PostMapping("/shorten")
+    public String shortenUrl(@RequestParam String originalUrl) {
+        // Shorten URL logic
+        return "Shortened URL: ..."; // Placeholder
+    }
+
+    @GetMapping("/{shortenedUrl}")
+    public String redirect(@PathVariable String shortenedUrl, HttpServletRequest request,
+                           @RequestParam double lat, @RequestParam double lng) {
+        // Redirect logic
+        return "redirect:"; // Placeholder
+    }
+
+    @GetMapping("/analytics/{shortenedUrl}")
+    public List<ClickLog> getAnalytics(@PathVariable String shortenedUrl) {
+        // Analytics logic
+        return List.of(); // Placeholder
+    }
+
+    // Other methods for logging, etc.
+}
+

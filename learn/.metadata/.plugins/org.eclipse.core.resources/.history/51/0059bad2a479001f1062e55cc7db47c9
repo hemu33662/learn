@@ -1,0 +1,50 @@
+package com.learnip.logger.service;
+
+import org.apache.commons.lang3.RandomStringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.learnip.logger.model.UrlMapping;
+import com.learnip.logger.repository.UrlMappingRepository;
+
+@Service
+public class UrlService {
+
+    @Autowired
+    private UrlMappingRepository urlMappingRepository;
+
+//    public UrlMapping shortenUrl(String originalUrl) {
+//        if (originalUrl == null || originalUrl.isEmpty()) {
+//            throw new IllegalArgumentException("Original URL cannot be empty");
+//        }
+//        String shortenedUrl = generateShortenedUrl();
+//        UrlMapping urlMapping = new UrlMapping();
+//        urlMapping.setOriginalUrl(originalUrl);
+//        urlMapping.setShortenedUrl(shortenedUrl);
+//        urlMapping.setTotalClicks(0);
+//        return urlMappingRepository.save(urlMapping);
+//    }
+    public UrlMapping shortenUrl(String originalUrl) {
+        if (originalUrl == null || originalUrl.isEmpty()) {
+            throw new IllegalArgumentException("Original URL cannot be empty");
+        }
+        String shortenedUrl;
+        do {
+            shortenedUrl = generateShortenedUrl();
+        } while (urlMappingRepository.findByShortenedUrl(shortenedUrl) != null);
+
+        UrlMapping urlMapping = new UrlMapping();
+        urlMapping.setOriginalUrl(originalUrl);
+        urlMapping.setShortenedUrl(shortenedUrl);
+        urlMapping.setTotalClicks(0);
+        return urlMappingRepository.save(urlMapping);
+    }
+    
+   
+
+    private String generateShortenedUrl() {
+        // Implement a method to generate a unique shortened URL
+        return  RandomStringUtils.randomAlphanumeric(6); // Placeholder
+    }
+}
+

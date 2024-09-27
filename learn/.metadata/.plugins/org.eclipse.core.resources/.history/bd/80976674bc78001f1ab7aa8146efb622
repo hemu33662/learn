@@ -1,0 +1,5 @@
+package com.learnip.logger.service;
+
+public class UrlService {
+
+}

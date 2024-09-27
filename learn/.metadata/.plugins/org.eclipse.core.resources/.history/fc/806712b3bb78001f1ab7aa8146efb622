@@ -1,0 +1,5 @@
+package com.learnip.logger.repository;
+
+public class UrlMappingRepository {
+
+}

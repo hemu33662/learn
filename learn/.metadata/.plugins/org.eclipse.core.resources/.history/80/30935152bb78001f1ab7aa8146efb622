@@ -1,0 +1,5 @@
+package com.learnip.logger.model;
+
+public class UrlMapping {
+
+}
